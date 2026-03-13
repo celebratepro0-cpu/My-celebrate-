@@ -1,0 +1,56 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Messages - Admin{% endblock %}
+
+{% block content %}
+<div class="admin-header">
+    <h1>Contact Messages</h1>
+    <div>
+        {% set unread = messages|selectattr('is_read', 'equalto', false)|list %}
+        <span style="color: #666;">{{ unread|length }} unread</span>
+    </div>
+</div>
+
+{% if messages %}
+<div class="admin-card">
+    <div class="admin-card-body" style="padding: 0;">
+        {% for msg in messages %}
+        <div style="padding: 1.5rem; border-bottom: 1px solid #eee; {% if not msg.is_read %}background: rgba(233, 69, 96, 0.02);{% endif %}">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-color), var(--gold-color)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 1.1rem;">
+                        {{ msg.name[0]|upper }}
+                    </div>
+                    <div>
+                        <strong style="font-size: 1.1rem;">{{ msg.name }}</strong>
+                        <p style="margin-bottom: 0; font-size: 0.85rem; color: #999;">{{ msg.email }}</p>
+                    </div>
+                </div>
+                <div style="text-align: right;">
+                    <span style="font-size: 0.85rem; color: #999;">{{ msg.created_at.strftime('%b %d, %Y at %I:%M %p') }}</span>
+                    {% if not msg.is_read %}
+                    <span class="status-badge" style="background: rgba(233, 69, 96, 0.1); color: var(--accent-color); margin-left: 0.5rem;">New</span>
+                    {% endif %}
+                </div>
+            </div>
+            
+            {% if msg.subject %}
+            <p style="margin-bottom: 0.5rem;"><strong>Subject:</strong> {{ msg.subject }}</p>
+            {% endif %}
+            
+            <p style="margin-bottom: 0; color: #666; line-height: 1.6;">{{ msg.message }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<div class="admin-card">
+    <div class="admin-card-body text-center" style="padding: 4rem;">
+        <i class="fas fa-inbox" style="font-size: 4rem; color: #ddd; margin-bottom: 1rem;"></i>
+        <h3>No Messages Yet</h3>
+        <p style="color: #999;">Messages from the contact form will appear here.</p>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>

@@ -1,0 +1,89 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Gift Cards - Admin{% endblock %}
+
+{% block content %}
+<div class="admin-header">
+    <h1>Gift Cards Management</h1>
+</div>
+
+<!-- Add Gift Card Form -->
+<div class="admin-card" style="margin-bottom: 2rem;">
+    <div class="admin-card-header">
+        <h3>Create New Gift Card</h3>
+    </div>
+    <div class="admin-card-body">
+        <form action="{{ url_for('add_gift_card') }}" method="POST" style="display: flex; gap: 1rem; align-items: flex-end; flex-wrap: wrap;">
+            <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                <label for="code">Gift Card Code</label>
+                <input type="text" id="code" name="code" placeholder="e.g., SUMMER2024" required style="text-transform: uppercase;">
+            </div>
+            <div class="form-group" style="width: 200px; margin-bottom: 0;">
+                <label for="value">Value ($)</label>
+                <input type="number" id="value" name="value" step="0.01" min="1" placeholder="100.00" required>
+            </div>
+            <button type="submit" class="btn btn-gold btn-lg">
+                <i class="fas fa-plus"></i> Create Gift Card
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Gift Cards List -->
+{% if gift_cards %}
+<div class="admin-card">
+    <div class="admin-card-header">
+        <h3>All Gift Cards</h3>
+        <span style="color: #666;">Total: {{ gift_cards|length }} cards</span>
+    </div>
+    <div class="admin-card-body" style="padding: 0;">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Original Value</th>
+                    <th>Remaining Balance</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for gc in gift_cards %}
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <div style="width: 40px; height: 40px; border-radius: 8px; background: rgba(244, 160, 32, 0.1); display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-gift" style="color: var(--gold-color);"></i>
+                            </div>
+                            <strong style="font-family: monospace; font-size: 1.1rem;">{{ gc.code }}</strong>
+                        </div>
+                    </td>
+                    <td><strong>${{ "{:,.2f}".format(gc.value) }}</strong></td>
+                    <td>
+                        <strong style="color: {% if gc.balance > 0 %}var(--accent-color){% else %}#999{% endif %};">${{ "{:,.2f}".format(gc.balance) }}</strong>
+                    </td>
+                    <td>
+                        {% if gc.is_active and gc.balance > 0 %}
+                        <span class="status-badge status-active">Active</span>
+                        {% else %}
+                        <span class="status-badge status-inactive">Used/Inactive</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ gc.created_at.strftime('%b %d, %Y') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+<div class="admin-card">
+    <div class="admin-card-body text-center" style="padding: 4rem;">
+        <i class="fas fa-gift" style="font-size: 4rem; color: #ddd; margin-bottom: 1rem;"></i>
+        <h3>No Gift Cards Yet</h3>
+        <p style="color: #999; margin-bottom: 1.5rem;">Create gift cards to offer payment options to your customers.</p>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>

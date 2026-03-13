@@ -1,0 +1,20 @@
+31:    is_admin = db.Column(db.Boolean, default=False)
+104:# Create admin user and sample data
+105:def create_admin_and_sample_data():
+106:    admin = User.query.filter_by(username='admin').first()
+107:    if not admin:
+108:        admin = User(username='admin', email='admin@celebrity.com', is_admin=True)
+109:        admin.set_password('admin123')
+110:        db.session.add(admin)
+241:            if user.is_admin:
+242:                return redirect(url_for('admin_dashboard'))
+402:@app.route('/admin')
+404:def admin_dashboard():
+405:    if not current_user.is_admin:
+411:    total_users = User.query.filter_by(is_admin=False).count()
+415:    return render_template('admin/dashboard.html', 
+422:@app.route('/admin/services')
+424:def admin_services():
+425:    if not current_user.is_admin:
+430:    return render_template('admin/services.html', services=services)
+432:@app.route('/admin/services/add', methods=['GET', 'POST'])

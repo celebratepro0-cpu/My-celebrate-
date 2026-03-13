@@ -1,0 +1,70 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Users - Admin{% endblock %}
+
+{% block content %}
+<div class="admin-header">
+    <h1>Registered Users</h1>
+    <div>
+        <span style="color: #666;">Total: {{ users|length }} users</span>
+    </div>
+</div>
+
+{% if users %}
+<div class="admin-card">
+    <div class="admin-card-body" style="padding: 0;">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Email</th>
+                    <th>Registered</th>
+                    <th>Bookings</th>
+                    <th>Total Spent</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-color), var(--gold-color)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 1.1rem;">
+                                {{ user.username[0]|upper }}
+                            </div>
+                            <div>
+                                <strong>{{ user.username }}</strong>
+                                <p style="margin-bottom: 0; font-size: 0.8rem; color: #999;">ID: {{ user.id }}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.created_at.strftime('%b %d, %Y') }}</td>
+                    <td>
+                        <strong>{{ user.bookings|length }}</strong>
+                    </td>
+                    <td>
+                        {% set total = namespace(value=0) %}
+                        {% for booking in user.bookings %}
+                            {% if booking.payment_status == 'paid' %}
+                                {% set total.value = total.value + booking.total_amount %}
+                            {% endif %}
+                        {% endfor %}
+                        <strong style="color: var(--accent-color);">${{ "{:,.2f}".format(total.value) }}</strong>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+<div class="admin-card">
+    <div class="admin-card-body text-center" style="padding: 4rem;">
+        <i class="fas fa-users" style="font-size: 4rem; color: #ddd; margin-bottom: 1rem;"></i>
+        <h3>No Users Yet</h3>
+        <p style="color: #999;">Users will appear here when they register on the platform.</p>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>

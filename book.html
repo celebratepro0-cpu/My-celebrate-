@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}Book {{ service.name }} - CelebrityPro{% endblock %}
+
+{% block content %}
+<div class="booking-page">
+    <div class="booking-container">
+        <div class="section-header" style="margin-bottom: 2rem;">
+            <span class="section-badge">Book Your Experience</span>
+            <h2>{{ service.name }}</h2>
+            <p>Complete your booking for this exclusive celebrity experience</p>
+        </div>
+        
+        <div class="admin-card">
+            <div class="admin-card-body">
+                <form action="{{ url_for('book_service', service_id=service.id) }}" method="POST">
+                    <!-- Booking Summary -->
+                    <div style="background: var(--bg-light); padding: 1.5rem; border-radius: var(--border-radius-sm); margin-bottom: 2rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <span style="font-weight: 600;">Service</span>
+                            <span>{{ service.name }}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <span style="font-weight: 600;">Duration</span>
+                            <span>{{ service.duration }}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid #ddd;">
+                            <span style="font-weight: 600;">Total Price</span>
+                            <span style="font-size: 1.5rem; font-weight: 700; color: var(--accent-color);">${{ "{:,.2f}".format(service.price) }}</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Date Selection -->
+                    <div class="form-group">
+                        <label>Select Date</label>
+                        <select name="booking_date" id="bookingDate" required style="width: 100%; padding: 1rem; border: 2px solid #eee; border-radius: var(--border-radius-sm); font-size: 1rem;">
+                            <option value="">Choose a date...</option>
+                            {% for date in availability.keys() %}
+                            <option value="{{ date }}">{{ date }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <!-- Time Selection -->
+                    <div class="form-group">
+                        <label>Select Time</label>
+                        <select name="booking_time" id="bookingTime" required style="width: 100%; padding: 1rem; border: 2px solid #eee; border-radius: var(--border-radius-sm); font-size: 1rem;">
+                            <option value="">Choose a time slot...</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Payment Method -->
+                    <div class="form-group">
+                        <label>Payment Method</label>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <label style="display: flex; align-items: center; padding: 1rem; border: 2px solid #eee; border-radius: var(--border-radius-sm); cursor: pointer; transition: all 0.3s;">
+                                <input type="radio" name="payment_method" value="gift_card" checked style="margin-right: 0.75rem;">
+                                <i class="fas fa-gift" style="margin-right: 0.5rem; color: var(--gold-color);"></i>
+                                Gift Card
+                            </label>
+                            <label style="display: flex; align-items: center; padding: 1rem; border: 2px solid #eee; border-radius: var(--border-radius-sm); cursor: pointer; transition: all 0.3s;">
+                                <input type="radio" name="payment_method" value="card" style="margin-right: 0.75rem;">
+                                <i class="fas fa-credit-card" style="margin-right: 0.5rem; color: var(--accent-color);"></i>
+                                Credit Card
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Gift Card Input -->
+                    <div class="form-group" id="giftCardSection">
+                        <label>Gift Card Code</label>
+                        <input type="text" name="gift_card_code" placeholder="Enter your gift card code (e.g., GIFT100)" style="width: 100%; padding: 1rem; border: 2px solid #eee; border-radius: var(--border-radius-sm); font-size: 1rem;">
+                        <small style="color: #999; display: block; margin-top: 0.5rem;">
+                            Available test codes: GIFT100, GIFT250, GIFT500, VIP1000
+                        </small>
+                    </div>
+                    
+                    <!-- Notes -->
+                    <div class="form-group">
+                        <label>Special Requests (Optional)</label>
+                        <textarea name="notes" rows="3" placeholder="Any special requests or notes for your booking..." style="width: 100%; padding: 1rem; border: 2px solid #eee; border-radius: var(--border-radius-sm); font-size: 1rem;"></textarea>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                        <a href="{{ url_for('service_detail', service_id=service.id) }}" class="btn btn-outline" style="flex: 1;">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </a>
+                        <button type="submit" class="btn btn-primary btn-lg" style="flex: 2;">
+                            <i class="fas fa-check"></i> Confirm Booking
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    const availability = {{ availability | tojson }};
+    
+    document.getElementById('bookingDate').addEventListener('change', function() {
+        const date = this.value;
+        const timeSelect = document.getElementById('bookingTime');
+        timeSelect.innerHTML = '<option value="">Choose a time slot...</option>';
+        
+        if (date && availability[date]) {
+            availability[date].forEach(time => {
+                const option = document.createElement('option');
+                option.value = time;
+                option.textContent = time;
+                timeSelect.appendChild(option);
+            });
+        }
+    });
+    
+    // Payment method toggle
+    document.querySelectorAll('input[name="payment_method"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const giftCardSection = document.getElementById('giftCardSection');
+            if (this.value === 'gift_card') {
+                giftCardSection.style.display = 'block';
+            } else {
+                giftCardSection.style.display = 'none';
+            }
+        });
+    });
+    
+    // Style selected payment option
+    document.querySelectorAll('input[name="payment_method"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            document.querySelectorAll('input[name="payment_method"]').forEach(r => {
+                r.closest('label').style.borderColor = r.checked ? 'var(--accent-color)' : '#eee';
+                r.closest('label').style.background = r.checked ? 'rgba(233, 69, 96, 0.05)' : 'transparent';
+            });
+        });
+    });
+</script>
+{% endblock %}
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>

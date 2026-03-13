@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+
+{% block title %}CelebrityPro - Premium Celebrity Management & Booking{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-star"></i>
+                Premium Celebrity Services
+            </div>
+            <h1>Book Your <span>Dream Celebrity</span> Experience</h1>
+            <p>Connect with world-renowned celebrities for exclusive appearances, private concerts, brand endorsements, and unforgettable experiences.</p>
+            <div class="hero-buttons">
+                <a href="{{ url_for('search') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-search"></i> Browse Services
+                </a>
+                <a href="#services" class="btn btn-secondary btn-lg">
+                    <i class="fas fa-play"></i> Learn More
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Events Booked</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Celebrities</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Satisfaction</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=700&fit=crop" alt="Celebrity Performance">
+        </div>
+    </div>
+</section>
+
+<!-- Search Section -->
+<section class="container" style="position: relative; z-index: 10;">
+    <div class="search-section">
+        <form action="{{ url_for('search') }}" method="GET" class="search-form">
+            <div class="search-input-group">
+                <i class="fas fa-search"></i>
+                <input type="text" name="q" placeholder="Search for services, events, appearances...">
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-arrow-right"></i> Search
+            </button>
+        </form>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Our Services</span>
+            <h2>Premium Celebrity Experiences</h2>
+            <p>Discover our exclusive range of celebrity services tailored to make your events unforgettable</p>
+        </div>
+        
+        <div class="services-grid">
+            {% for service in services %}
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="{% if service.image_url == 'default.jpg' %}https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=500&h=300&fit=crop{% else %}{{ url_for('static', filename='uploads/' + service.image_url) }}{% endif %}" alt="{{ service.name }}">
+                    <span class="service-category">{{ service.category }}</span>
+                </div>
+                <div class="service-content">
+                    <h3>{{ service.name }}</h3>
+                    <p>{{ service.description[:150] }}{% if service.description|length > 150 %}...{% endif %}</p>
+                    <div class="service-meta">
+                        <div class="service-price">${{ "{:,.2f}".format(service.price) }}</div>
+                        <div class="service-duration">
+                            <i class="fas fa-clock"></i>
+                            {{ service.duration }}
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <a href="{{ url_for('service_detail', service_id=service.id) }}" class="btn btn-outline btn-sm" style="width: 100%;">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        {% if services|length == 0 %}
+        <div class="text-center" style="padding: 3rem;">
+            <i class="fas fa-calendar-times" style="font-size: 4rem; color: #ddd; margin-bottom: 1rem;"></i>
+            <h3>No Services Available</h3>
+            <p>Check back soon for new celebrity experiences!</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge" style="background: rgba(255,255,255,0.1); color: white;">Why Choose Us</span>
+            <h2>The CelebrityPro Difference</h2>
+            <p>We provide a seamless, professional experience from booking to event completion</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>VIP Experience</h3>
+                <p>Get exclusive access to world-class celebrities and premium services tailored to your needs.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Secure Booking</h3>
+                <p>Our platform ensures secure transactions and protects your personal information at all times.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <h3>Easy Scheduling</h3>
+                <p>Book your preferred date and time with our intuitive scheduling system and instant confirmation.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>24/7 Support</h3>
+                <p>Our dedicated team is available around the clock to assist with any questions or concerns.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge">Testimonials</span>
+            <h2>What Our Clients Say</h2>
+            <p>Hear from satisfied clients who have experienced our premium celebrity services</p>
+        </div>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"An absolutely incredible experience! The VIP Meet & Greet exceeded all expectations. Professional, seamless, and truly memorable."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <h4>John Davidson</h4>
+                            <span>Corporate Event Planner</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"The private concert for our company's anniversary was phenomenal. Everything was handled professionally from start to finish."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <h4>Sarah Mitchell</h4>
+                            <span>Marketing Director</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>"Brand endorsement package delivered amazing results for our campaign. The team was responsive and the ROI exceeded our expectations."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <h4>Michael Roberts</h4>
+                            <span>Brand Manager</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="contact">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge" style="background: rgba(255,255,255,0.1); color: white;">Get Started</span>
+            <h2>Ready to Book Your Experience?</h2>
+            <p>Contact us today to discuss your requirements and create an unforgettable celebrity experience</p>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="{{ url_for('contact') }}" class="btn btn-gold btn-lg">
+                <i class="fas fa-envelope"></i> Contact Us Now
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>

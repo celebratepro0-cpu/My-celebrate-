@@ -1,0 +1,10 @@
+2:from flask_sqlalchemy import SQLAlchemy
+3:from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+4:from werkzeug.security import generate_password_hash, check_password_hash
+5:from werkzeug.utils import secure_filename
+6:from datetime import datetime, timedelta
+7:import os
+8:import uuid
+9:import json
+116:                'description': 'An exclusive one-on-one meeting session with the celebrity. Includes photo opportunities, autographs, and a personalized experience. Perfect for fans who want a memorable encounter.',
+615:    app.run(debug=True, host='0.0.0.0', port=5000)

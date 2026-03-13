@@ -1,0 +1,110 @@
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://172.31.109.64:3000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 597-360-300
+127.0.0.1 - - [08/Mar/2026 00:31:39] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [08/Mar/2026 00:39:20] "GET /?password=bdd59990-1e86-4d9c-ae80-ca35a51e95ef HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:39:20] "GET /?hideControls=true&password=bdd59990-1e86-4d9c-ae80-ca35a51e95ef HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:39:25] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:39:43] "GET /?_gl=1*1yztpym*_gcl_au*NjAwNjAyMDEwLjE3NzI5MjcxODk.*_ga*MTQ2NTA3NjU4LjE3NzI5MjcwNzg.*_ga_8NW18Q4WF2*czE3NzI5MjcxODgkbzEkZzEkdDE3NzI5MzAzNTEkajMyJGwwJGgxNDc5MTkyOTky&password=bdd59990-1e86-4d9c-ae80-ca35a51e95ef HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:39:44] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:39:46] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+172.31.0.1 - - [08/Mar/2026 00:40:24] "GET /service/1 HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:40:26] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:40:44] "GET /?password=bdd59990-1e86-4d9c-ae80-ca35a51e95ef HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:40:46] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:42:53] "GET /contact HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:42:54] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:43:41] "GET /search HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:43:42] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:44:00] "GET /service/1 HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:44:01] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:44:15] "GET /?password=bdd59990-1e86-4d9c-ae80-ca35a51e95ef HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:44:16] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:45:00] "GET /service/1 HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:45:01] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:45:04] "GET /search HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:45:06] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:45:09] "GET /contact HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:45:10] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:45:13] "GET /?password=bdd59990-1e86-4d9c-ae80-ca35a51e95ef HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:45:14] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:45:17] "GET /service/1 HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:45:17] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:45:20] "GET /?_gl=1*1yztpym*_gcl_au*NjAwNjAyMDEwLjE3NzI5MjcxODk.*_ga*MTQ2NTA3NjU4LjE3NzI5MjcwNzg.*_ga_8NW18Q4WF2*czE3NzI5MjcxODgkbzEkZzEkdDE3NzI5MzAzNTEkajMyJGwwJGgxNDc5MTkyOTky&password=bdd59990-1e86-4d9c-ae80-ca35a51e95ef HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:45:21] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:46:34] "GET /?hideControls=true&password=bdd59990-1e86-4d9c-ae80-ca35a51e95ef HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:46:36] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:50:41] "GET /?_gl=1*1r4x8qj*_gcl_au*NjAwNjAyMDEwLjE3NzI5MjcxODk.*_ga*MTQ2NTA3NjU4LjE3NzI5MjcwNzg.*_ga_8NW18Q4WF2*czE3NzI5MjcxODgkbzEkZzEkdDE3NzI5MzA3ODckajI0JGwwJGgxNDc5MTkyOTky&password=bdd59990-1e86-4d9c-ae80-ca35a51e95ef HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:50:42] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:53:06] "GET /?_gl=1*14ots8b*_gcl_au*NjAwNjAyMDEwLjE3NzI5MjcxODk.*_ga*MTQ2NTA3NjU4LjE3NzI5MjcwNzg.*_ga_8NW18Q4WF2*czE3NzI5MjcxODgkbzEkZzEkdDE3NzI5MzA3ODckajI0JGwwJGgxNDc5MTkyOTky&password=bdd59990-1e86-4d9c-ae80-ca35a51e95ef HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:53:07] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:54:22] "GET /search?q=Ed+Sheeran+ HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:54:23] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:54:28] "GET /search HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:54:30] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:55:12] "GET /?password=bdd59990-1e86-4d9c-ae80-ca35a51e95ef HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:55:13] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:55:41] "GET /service/3 HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:55:42] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:56:22] "GET /login?next=/book/3 HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:56:24] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:56:52] "POST /login HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:56:53] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:57:00] "GET /register HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:57:02] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:57:09] "GET /login HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:57:10] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:57:40] "POST /login HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:57:41] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:58:03] "GET /register HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:58:04] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:58:36] "[32mPOST /register HTTP/1.1[0m" 302 -
+172.31.0.1 - - [08/Mar/2026 00:58:37] "GET /login HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:58:38] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:58:55] "[32mPOST /login HTTP/1.1[0m" 302 -
+/workspace/celebrity_booking/app.py:99: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  return User.query.get(int(user_id))
+172.31.0.1 - - [08/Mar/2026 00:58:56] "GET /?password=bdd59990-1e86-4d9c-ae80-ca35a51e95ef HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:58:58] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:59:10] "GET /service/1 HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:59:11] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:59:28] "GET /book/1 HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:59:29] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 00:59:59] "GET /service/1 HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:00:01] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:13] "GET /book/1 HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:14] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:17] "GET /service/1 HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:18] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:20] "GET /?password=bdd59990-1e86-4d9c-ae80-ca35a51e95ef HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:22] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:24] "GET /login HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:25] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:28] "GET /register HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:29] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:34] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:37] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:40] "GET /login?next=/book/3 HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:41] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:44] "GET /service/3 HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:45] "GET /?password=bdd59990-1e86-4d9c-ae80-ca35a51e95ef HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:46] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:49] "GET /search HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:50] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:53] "GET /search?q=Ed+Sheeran+ HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:54] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:57] "GET /?_gl=1*14ots8b*_gcl_au*NjAwNjAyMDEwLjE3NzI5MjcxODk.*_ga*MTQ2NTA3NjU4LjE3NzI5MjcwNzg.*_ga_8NW18Q4WF2*czE3NzI5MjcxODgkbzEkZzEkdDE3NzI5MzA3ODckajI0JGwwJGgxNDc5MTkyOTky&password=bdd59990-1e86-4d9c-ae80-ca35a51e95ef HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:03:58] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:10:00] "GET /?password=bdd59990-1e86-4d9c-ae80-ca35a51e95ef HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:10:02] "GET /static/css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [08/Mar/2026 01:29:54] "GET /?password=bdd59990-1e86-4d9c-ae80-ca35a51e95ef HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:29:55] "GET /?password=bdd59990-1e86-4d9c-ae80-ca35a51e95ef HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:29:56] "GET /static/css/style.css HTTP/1.1" 200 -
+172.31.0.1 - - [08/Mar/2026 01:29:58] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -

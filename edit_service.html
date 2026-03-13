@@ -1,0 +1,75 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Edit Service - Admin{% endblock %}
+
+{% block content %}
+<div class="admin-header">
+    <h1>Edit Service</h1>
+    <a href="{{ url_for('admin_services') }}" class="btn btn-outline">
+        <i class="fas fa-arrow-left"></i> Back to Services
+    </a>
+</div>
+
+<div class="admin-card">
+    <div class="admin-card-body">
+        <form action="{{ url_for('edit_service', service_id=service.id) }}" method="POST" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Service Name *</label>
+                    <input type="text" id="name" name="name" value="{{ service.name }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">Category *</label>
+                    <select id="category" name="category" required>
+                        {% for cat in categories %}
+                        <option value="{{ cat }}" {% if service.category == cat %}selected{% endif %}>{{ cat }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description *</label>
+                <textarea id="description" name="description" rows="4" required>{{ service.description }}</textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="price">Price ($) *</label>
+                    <input type="number" id="price" name="price" step="0.01" min="0" value="{{ service.price }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="duration">Duration *</label>
+                    <input type="text" id="duration" name="duration" value="{{ service.duration }}" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Current Image</label>
+                <div style="width: 200px; height: 120px; border-radius: 8px; overflow: hidden; margin-bottom: 1rem;">
+                    <img src="{% if service.image_url == 'default.jpg' %}https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=200&h=120&fit=crop{% else %}{{ url_for('static', filename='uploads/' + service.image_url) }}{% endif %}" alt="{{ service.name }}" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <label for="image">Upload New Image (optional)</label>
+                <input type="file" id="image" name="image" accept="image/*" style="padding: 0.75rem;">
+            </div>
+            
+            <div class="form-group">
+                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                    <input type="checkbox" name="is_active" {% if service.is_active %}checked{% endif %} style="width: 20px; height: 20px;">
+                    <span>Service is active and visible to users</span>
+                </label>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+                <a href="{{ url_for('admin_services') }}" class="btn btn-outline btn-lg">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>

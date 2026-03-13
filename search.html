@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Search Services - CelebrityPro{% endblock %}
+
+{% block content %}
+<div class="service-detail-page">
+    <div class="service-detail-container">
+        <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+            <h2 style="margin-bottom: 0.5rem;">Browse Services</h2>
+            <p>Find the perfect celebrity experience for your event</p>
+        </div>
+        
+        <!-- Search Form -->
+        <div class="admin-card" style="margin-bottom: 2rem;">
+            <div class="admin-card-body">
+                <form action="{{ url_for('search') }}" method="GET" class="search-form" style="grid-template-columns: 1fr auto auto; gap: 1rem;">
+                    <div class="search-input-group">
+                        <i class="fas fa-search"></i>
+                        <input type="text" name="q" value="{{ query }}" placeholder="Search services...">
+                    </div>
+                    <select name="category" style="padding: 1rem; border: 2px solid #eee; border-radius: 8px; font-size: 1rem;">
+                        <option value="">All Categories</option>
+                        {% for cat in categories %}
+                        <option value="{{ cat[0] }}" {% if request.args.get('category') == cat[0] %}selected{% endif %}>{{ cat[0] }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Results -->
+        {% if services %}
+        <div class="services-grid">
+            {% for service in services %}
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="{% if service.image_url == 'default.jpg' %}https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=500&h=300&fit=crop{% else %}{{ url_for('static', filename='uploads/' + service.image_url) }}{% endif %}" alt="{{ service.name }}">
+                    <span class="service-category">{{ service.category }}</span>
+                </div>
+                <div class="service-content">
+                    <h3>{{ service.name }}</h3>
+                    <p>{{ service.description[:150] }}{% if service.description|length > 150 %}...{% endif %}</p>
+                    <div class="service-meta">
+                        <div class="service-price">${{ "{:,.2f}".format(service.price) }}</div>
+                        <div class="service-duration">
+                            <i class="fas fa-clock"></i>
+                            {{ service.duration }}
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <a href="{{ url_for('service_detail', service_id=service.id) }}" class="btn btn-outline btn-sm" style="width: 100%;">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="admin-card">
+            <div class="admin-card-body text-center" style="padding: 3rem;">
+                <i class="fas fa-search" style="font-size: 4rem; color: #ddd; margin-bottom: 1rem;"></i>
+                <h3>No Services Found</h3>
+                <p>Try adjusting your search criteria or browse all services.</p>
+                <a href="{{ url_for('search') }}" class="btn btn-primary" style="margin-top: 1rem;">
+                    View All Services
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>

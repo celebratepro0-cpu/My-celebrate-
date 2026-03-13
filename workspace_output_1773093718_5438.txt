@@ -1,0 +1,4 @@
+clean_website/register.html:<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+clean_website/booking.html:<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+clean_website/login.html:<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+clean_website/index.html:<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>

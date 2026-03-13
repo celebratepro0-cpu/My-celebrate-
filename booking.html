@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Service - Celebrity Booking Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2><a href="index.html" style="color: white; text-decoration: none;">Celebrity Booking</a></h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#services" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#contact" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-link">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="booking-main">
+        <div class="container">
+            <div class="booking-container">
+                <h2>Book Your Celebrity Experience</h2>
+                
+                <div class="booking-content">
+                    <div class="service-summary">
+                        <h3>Service Details</h3>
+                        <div class="service-info">
+                            <h4 id="serviceName">Celebrity Meet & Greet</h4>
+                            <p id="serviceDescription">An exclusive one-on-one meeting session with the celebrity.</p>
+                            <div class="price-info">
+                                <span class="price" id="servicePrice">$500.00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="booking-form" onsubmit="handleBooking(event)">
+                        <div class="form-section">
+                            <h3>Select Date & Time</h3>
+                            <div class="form-group">
+                                <label for="booking_date">Preferred Date</label>
+                                <input type="date" id="booking_date" name="booking_date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="booking_time">Preferred Time</label>
+                                <select id="booking_time" name="booking_time" required>
+                                    <option value="">Select a time</option>
+                                    <option value="09:00">9:00 AM</option>
+                                    <option value="10:00">10:00 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="14:00">2:00 PM</option>
+                                    <option value="15:00">3:00 PM</option>
+                                    <option value="16:00">4:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Personal Information</h3>
+                            <div class="form-group">
+                                <label for="customer_name">Full Name</label>
+                                <input type="text" id="customer_name" name="customer_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer_email">Email Address</label>
+                                <input type="email" id="customer_email" name="customer_email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customer_phone">Phone Number</label>
+                                <input type="tel" id="customer_phone" name="customer_phone" required>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Payment Method</h3>
+                            <div class="payment-options">
+                                <label class="payment-option">
+                                    <input type="radio" name="payment_method" value="gift_card" checked>
+                                    <span>Gift Card</span>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment_method" value="credit_card">
+                                    <span>Credit Card</span>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment_method" value="paypal">
+                                    <span>PayPal</span>
+                                </label>
+                            </div>
+
+                            <div class="gift-card-section" id="giftCardSection">
+                                <div class="form-group">
+                                    <label for="gift_card_code">Gift Card Code</label>
+                                    <input type="text" id="gift_card_code" name="gift_card_code" placeholder="Enter your gift card code">
+                                </div>
+                                <div class="demo-codes">
+                                    <p><strong>Demo Gift Card Codes:</strong></p>
+                                    <p>GIFT100 ($100), GIFT50 ($50), GIFT200 ($200)</p>
+                                </div>
+                            </div>
+
+                            <div class="credit-card-section" id="creditCardSection" style="display: none;">
+                                <div class="form-group">
+                                    <label for="card_number">Card Number</label>
+                                    <input type="text" id="card_number" name="card_number" placeholder="1234 5678 9012 3456">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="expiry_date">Expiry Date</label>
+                                        <input type="text" id="expiry_date" name="expiry_date" placeholder="MM/YY">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cvv">CVV</label>
+                                        <input type="text" id="cvv" name="cvv" placeholder="123">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Special Requests</h3>
+                            <div class="form-group">
+                                <label for="special_requests">Additional Notes (Optional)</label>
+                                <textarea id="special_requests" name="special_requests" rows="4" placeholder="Any special requests or notes for your booking..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="booking-summary">
+                            <div class="total-amount">
+                                <h3>Total: <span id="totalAmount">$500.00</span></h3>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">Confirm Booking</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Celebrity Booking Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set minimum date to today
+        document.getElementById('booking_date').min = new Date().toISOString().split('T')[0];
+
+        // Handle payment method changes
+        document.querySelectorAll('input[name="payment_method"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const giftCardSection = document.getElementById('giftCardSection');
+                const creditCardSection = document.getElementById('creditCardSection');
+                
+                if (this.value === 'gift_card') {
+                    giftCardSection.style.display = 'block';
+                    creditCardSection.style.display = 'none';
+                } else if (this.value === 'credit_card') {
+                    giftCardSection.style.display = 'none';
+                    creditCardSection.style.display = 'block';
+                } else {
+                    giftCardSection.style.display = 'none';
+                    creditCardSection.style.display = 'none';
+                }
+            });
+        });
+
+        // Handle booking form submission
+        function handleBooking(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const customerName = formData.get('customer_name');
+            const bookingDate = formData.get('booking_date');
+            const bookingTime = formData.get('booking_time');
+            const paymentMethod = formData.get('payment_method');
+            
+            let paymentInfo = '';
+            if (paymentMethod === 'gift_card') {
+                const giftCardCode = formData.get('gift_card_code');
+                if (!giftCardCode) {
+                    alert('Please enter a gift card code.');
+                    return;
+                }
+                paymentInfo = `Gift Card: ${giftCardCode}`;
+            } else if (paymentMethod === 'credit_card') {
+                const cardNumber = formData.get('card_number');
+                if (!cardNumber) {
+                    alert('Please enter your card details.');
+                    return;
+                }
+                paymentInfo = `Credit Card ending in ${cardNumber.slice(-4)}`;
+            } else {
+                paymentInfo = 'PayPal';
+            }
+            
+            alert(`Booking Confirmed!
+
+Customer: ${customerName}
+Date: ${bookingDate} at ${bookingTime}
+Service: Celebrity Meet & Greet
+Payment: ${paymentInfo}
+Total: $500.00
+
+In the full application, you would receive a confirmation email and the booking would be saved to your account.`);
+        }
+
+        // Load service details from URL parameters (if any)
+        const urlParams = new URLSearchParams(window.location.search);
+        const serviceParam = urlParams.get('service');
+        
+        if (serviceParam) {
+            const services = {
+                'meet-greet': {
+                    name: 'Celebrity Meet & Greet',
+                    description: 'An exclusive one-on-one meeting session with the celebrity. Includes photo opportunities, autographs, and a personalized experience.',
+                    price: '$500.00'
+                },
+                'virtual-call': {
+                    name: 'Virtual Video Call',
+                    description: 'A private 30-minute video call session. Perfect for fans who want to have a personal conversation from the comfort of their home.',
+                    price: '$250.00'
+                },
+                'autograph': {
+                    name: 'Personalized Autograph',
+                    description: 'Get a personalized autograph with a custom message. The item will be signed and shipped directly to your address.',
+                    price: '$150.00'
+                }
+            };
+            
+            const service = services[serviceParam];
+            if (service) {
+                document.getElementById('serviceName').textContent = service.name;
+                document.getElementById('serviceDescription').textContent = service.description;
+                document.getElementById('servicePrice').textContent = service.price;
+                document.getElementById('totalAmount').textContent = service.price;
+            }
+        }
+    </script>
+</body>
+</html>

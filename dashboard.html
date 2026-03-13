@@ -1,0 +1,137 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Dashboard - Admin{% endblock %}
+
+{% block content %}
+<div class="admin-header">
+    <h1>Dashboard</h1>
+    <div>
+        <span style="color: #666;">Welcome back, Admin!</span>
+    </div>
+</div>
+
+<!-- Stats Grid -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon bookings">
+            <i class="fas fa-calendar-check"></i>
+        </div>
+        <div class="stat-info">
+            <h3>{{ total_bookings }}</h3>
+            <p>Total Bookings</p>
+        </div>
+    </div>
+    
+    <div class="stat-card">
+        <div class="stat-icon revenue">
+            <i class="fas fa-dollar-sign"></i>
+        </div>
+        <div class="stat-info">
+            <h3>${{ "{:,.2f}".format(total_revenue) }}</h3>
+            <p>Total Revenue</p>
+        </div>
+    </div>
+    
+    <div class="stat-card">
+        <div class="stat-icon users">
+            <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-info">
+            <h3>{{ total_users }}</h3>
+            <p>Registered Users</p>
+        </div>
+    </div>
+    
+    <div class="stat-card">
+        <div class="stat-icon services">
+            <i class="fas fa-star"></i>
+        </div>
+        <div class="stat-info">
+            <h3>{{ total_services }}</h3>
+            <p>Active Services</p>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Bookings -->
+<div class="admin-card">
+    <div class="admin-card-header">
+        <h3>Recent Bookings</h3>
+        <a href="{{ url_for('admin_bookings') }}" class="btn btn-outline btn-sm">View All</a>
+    </div>
+    <div class="admin-card-body" style="padding: 0;">
+        {% if recent_bookings %}
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in recent_bookings %}
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-color), var(--gold-color)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">
+                                {{ booking.user.username[0]|upper }}
+                            </div>
+                            <div>
+                                <strong>{{ booking.user.username }}</strong>
+                                <p style="margin-bottom: 0; font-size: 0.8rem; color: #999;">{{ booking.user.email }}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{ booking.service.name }}</td>
+                    <td>{{ booking.booking_date.strftime('%b %d, %Y') }}</td>
+                    <td><strong>${{ "{:,.2f}".format(booking.total_amount) }}</strong></td>
+                    <td>
+                        <span class="status-badge status-{{ booking.status }}">{{ booking.status.title() }}</span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div style="text-align: center; padding: 2rem; color: #999;">
+            <i class="fas fa-calendar-times" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+            <p>No bookings yet</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+    <div class="admin-card">
+        <div class="admin-card-body" style="text-align: center;">
+            <i class="fas fa-plus-circle" style="font-size: 2.5rem; color: var(--accent-color); margin-bottom: 1rem;"></i>
+            <h4>Add New Service</h4>
+            <p style="color: #666; margin-bottom: 1rem;">Create a new celebrity service offering</p>
+            <a href="{{ url_for('add_service') }}" class="btn btn-primary btn-sm">Add Service</a>
+        </div>
+    </div>
+    
+    <div class="admin-card">
+        <div class="admin-card-body" style="text-align: center;">
+            <i class="fas fa-gift" style="font-size: 2.5rem; color: var(--gold-color); margin-bottom: 1rem;"></i>
+            <h4>Create Gift Card</h4>
+            <p style="color: #666; margin-bottom: 1rem;">Generate new gift card codes</p>
+            <a href="{{ url_for('admin_gift_cards') }}" class="btn btn-gold btn-sm">Manage Cards</a>
+        </div>
+    </div>
+    
+    <div class="admin-card">
+        <div class="admin-card-body" style="text-align: center;">
+            <i class="fas fa-chart-line" style="font-size: 2.5rem; color: #00bcd4; margin-bottom: 1rem;"></i>
+            <h4>View Reports</h4>
+            <p style="color: #666; margin-bottom: 1rem;">Analyze booking and revenue data</p>
+            <a href="{{ url_for('admin_bookings') }}" class="btn btn-dark btn-sm">View Bookings</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>

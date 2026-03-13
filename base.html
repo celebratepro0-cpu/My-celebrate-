@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin Dashboard - CelebrityPro{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <h2>Celebrity<span>Pro</span></h2>
+            </div>
+            
+            <nav class="admin-nav">
+                <a href="{{ url_for('admin_dashboard') }}" class="admin-nav-item {% if request.endpoint == 'admin_dashboard' %}active{% endif %}">
+                    <i class="fas fa-th-large"></i>
+                    Dashboard
+                </a>
+                <a href="{{ url_for('admin_services') }}" class="admin-nav-item {% if 'service' in request.endpoint %}active{% endif %}">
+                    <i class="fas fa-star"></i>
+                    Services
+                </a>
+                <a href="{{ url_for('admin_bookings') }}" class="admin-nav-item {% if request.endpoint == 'admin_bookings' %}active{% endif %}">
+                    <i class="fas fa-calendar-check"></i>
+                    Bookings
+                </a>
+                <a href="{{ url_for('admin_users') }}" class="admin-nav-item {% if request.endpoint == 'admin_users' %}active{% endif %}">
+                    <i class="fas fa-users"></i>
+                    Users
+                </a>
+                <a href="{{ url_for('admin_gift_cards') }}" class="admin-nav-item {% if request.endpoint == 'admin_gift_cards' %}active{% endif %}">
+                    <i class="fas fa-gift"></i>
+                    Gift Cards
+                </a>
+                <a href="{{ url_for('admin_messages') }}" class="admin-nav-item {% if request.endpoint == 'admin_messages' %}active{% endif %}">
+                    <i class="fas fa-envelope"></i>
+                    Messages
+                </a>
+                <div style="padding: 1rem 1.5rem; margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                    <a href="{{ url_for('index') }}" class="admin-nav-item">
+                        <i class="fas fa-globe"></i>
+                        View Website
+                    </a>
+                    <a href="{{ url_for('logout') }}" class="admin-nav-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </div>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="admin-main">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <div class="flash-message flash-{{ category }}">
+                                <i class="fas {% if category == 'success' %}fa-check-circle{% elif category == 'error' %}fa-exclamation-circle{% else %}fa-info-circle{% endif %}"></i>
+                                <span>{{ message }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+    
+    <script>
+        setTimeout(() => {
+            document.querySelectorAll('.flash-message').forEach(msg => {
+                msg.style.animation = 'slideIn 0.3s ease reverse';
+                setTimeout(() => msg.remove(), 300);
+            });
+        }, 5000);
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
